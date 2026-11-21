@@ -138,12 +138,29 @@ The bet is that a hard day doesn't end the relationship. So the first metric is 
 - The Progress tab: a month view that shows the trend without a streak.
 - Community posting, and the Plus coach flow.
 
-## Tools
+## Process and tools
 
-- **Figma** for the design system, screens, prototype flow and desktop layouts.
-- **Next.js 16** (the scaffold), **React 19**, **Tailwind CSS 4**, and TypeScript.
-- **Claude (Anthropic)**, used throughout as a collaborator:
-  - It critiqued the usability and information architecture.
-  - It built the Figma system through the Figma MCP (variables, text styles, components) from my screens and adjustments.
-  - It implemented the code, checked it in the browser, and curated the quote list.
-- I made the design calls, the product bet and the copy decisions, and reviewed everything that went in.
+**Research and product thinking: me, on paper.** I did the research and product-design work in my notebook:
+
+- choosing the goal.
+- comparing concepts.
+- deciding what people should get hooked on.
+- weighing the options until I picked the best one.
+
+**Design: me.** I created the screens and the visual style myself in **Figma** and reviewed every detail closely: layout, illustrations, color and copy.
+
+**AI to move faster: Claude (Anthropic).** I used it as an accelerator, not as the designer:
+
+- **Ideation:** bouncing ideas and building a first base to design from, plus a critical usability and information-architecture review that I then acted on.
+- **Design system in Figma:** through the Figma MCP, it helped turn my screens into:
+  - variables and tokens, text styles and components with variants.
+  - the file organization (Foundations, Components, Screens, Usability flow, References).
+  - the desktop adaptations.
+  
+  I reviewed every adjustment.
+- **Development:** taking the design to code in this scaffold:
+  - tokens mirrored from Figma into Tailwind.
+  - responsive layout, microinteractions and the curated DummyJSON integration.
+  - checking the result in the browser and running lint and build.
+
+**Stack:** Next.js 16 (the scaffold), React 19, Tailwind CSS 4, TypeScript.
