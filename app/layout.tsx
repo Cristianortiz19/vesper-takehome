@@ -1,34 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-// Geist is just a neutral default. Swap the fonts if your design calls for it.
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Manrope is the single family of the Vesper design system (Figma: Type/*).
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Daily Moment take-home",
-  description: "Build the main daily moment of an app that helps someone stick with one daily goal.",
+  title: "Vesper · Today",
+  description: "A 15-second daily check-in for cutting down on nicotine. Every day you log counts.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#f6f6f6",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${manrope.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

@@ -1,18 +1,57 @@
 {
-  "_comment": "This is placeholder data so the scaffold has something to render. Replace all of it to fit the daily goal you choose. Keep it a local file in this repo. Do not add a backend or a database.",
-  "goalTitle": "Sample daily goal",
-  "goalSubtitle": "Swap this content for whatever your daily moment needs",
-  "streakDays": 4,
+  "_comment": "Local demo data for Vesper, a daily check-in for cutting down on nicotine. No backend: this file is the starting state, and anything the person logs is saved in localStorage on top of it. The demo date is fixed so the story matches the Figma file: it is Friday 20 November, day 15 since starting, with 13 days logged and Thursday missed.",
+  "user": {
+    "name": "Jamieson",
+    "initial": "J"
+  },
+  "goal": {
+    "mode": "cut-down",
+    "unit": "cigarettes",
+    "unitSingular": "cigarette",
+    "dailyLimit": 5,
+    "baselinePerDay": 12,
+    "startedOn": "2026-11-06"
+  },
+  "today": "2026-11-20",
   "history": [
-    { "date": "2026-11-13", "done": true },
-    { "date": "2026-11-14", "done": true },
-    { "date": "2026-11-15", "done": false },
-    { "date": "2026-11-16", "done": true },
-    { "date": "2026-11-17", "done": false }
+    { "date": "2026-11-06", "count": 5, "mood": "tired" },
+    { "date": "2026-11-07", "count": 4, "mood": "calm" },
+    { "date": "2026-11-08", "count": 5, "mood": "tense" },
+    { "date": "2026-11-09", "count": 8, "mood": "tense" },
+    { "date": "2026-11-10", "count": 5, "mood": "tired" },
+    { "date": "2026-11-11", "count": 4, "mood": "calm" },
+    { "date": "2026-11-12", "count": 3, "mood": "proud" },
+    { "date": "2026-11-13", "count": 5, "mood": "calm" },
+    { "date": "2026-11-14", "count": 4, "mood": "tired" },
+    { "date": "2026-11-15", "count": 3, "mood": "calm" },
+    { "date": "2026-11-16", "count": 4, "mood": "calm" },
+    { "date": "2026-11-17", "count": 3, "mood": "proud" },
+    { "date": "2026-11-18", "count": 7, "mood": "tense" }
   ],
-  "items": [
-    { "id": "a", "label": "First sample item", "detail": "e.g. a word to learn, an amount to save, a wind-down step" },
-    { "id": "b", "label": "Second sample item", "detail": "Shape this list around your goal" },
-    { "id": "c", "label": "Third sample item", "detail": "The scaffold just proves the data loads; the design is yours" }
+  "milestones": [
+    { "days": 7, "label": "One week of showing up" },
+    { "days": 14, "label": "Two weeks of showing up" },
+    { "days": 21, "label": "Three weeks of showing up" },
+    { "days": 30, "label": "A month of showing up" },
+    { "days": 60, "label": "Two months of showing up" },
+    { "days": 90, "label": "Three months of showing up" }
+  ],
+  "community": {
+    "everyday": {
+      "topic": "Hard days",
+      "quote": "Logged 9 yesterday. Still here today, still counting.",
+      "meta": "Anonymous · 14 people said “me too”"
+    },
+    "hardDay": {
+      "topic": "Hard days",
+      "quote": "Had a 10-cigarette day last week. Logged it, came back the next morning. You can too.",
+      "meta": "Anonymous · 22 people said “me too”"
+    }
+  },
+  "fallbackThoughts": [
+    "Tomorrow doesn’t need to be perfect. It just needs a check-in.",
+    "Counting honestly is the habit. Fewer comes after.",
+    "You showed up today. That’s the part that compounds.",
+    "A hard day logged is worth more than a good day skipped."
   ]
 }
