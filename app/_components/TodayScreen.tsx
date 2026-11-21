@@ -30,23 +30,9 @@ import {
   WeekStrip,
 } from "./sections";
 import { CheckInCard, CheckInSheet, PlusSheet } from "./sheets";
+import { fetchThought, type Thought } from "@/lib/thought";
 
-type Thought = { text: string; source: string };
 type Open = { kind: "day"; date: string } | { kind: "plus" } | null;
-
-// Free REST API, no key or signup. If it is slow (> 2.5 s), down, or the quote
-// is too long for the card, we fall back to Vesper's own lines from sample.json.
-async function fetchThought(fallback: Thought, signal: AbortSignal): Promise<Thought> {
-  try {
-    const res = await fetch("https://dummyjson.com/quotes/random", { signal, cache: "no-store" });
-    if (!res.ok) return fallback;
-    const q = (await res.json()) as { quote?: string; author?: string };
-    if (!q.quote || q.quote.length > 120) return fallback;
-    return { text: q.quote, source: `${q.author ?? "Unknown"} · via DummyJSON` };
-  } catch {
-    return fallback;
-  }
-}
 
 const COLUMN = "contents md:flex md:min-w-0 md:flex-1 md:flex-col md:gap-6";
 
@@ -75,7 +61,8 @@ export function TodayScreen({ data }: { data: VesperData }) {
     toastTimer.current = setTimeout(() => setToast(null), 2600);
   };
 
-  // A line for tomorrow (external API with local fallback), only after the day is closed.
+  // A line for tomorrow: a curated DummyJSON quote picked for the kind of day it was
+  // (see lib/thought.ts), with Vesper's own lines as the fallback. Only after the day is closed.
   const [thought, setThought] = useState<Thought | null>(null);
   const loggedToday = !!todayEntry;
   useEffect(() => {
@@ -84,7 +71,7 @@ export function TodayScreen({ data }: { data: VesperData }) {
     const fallback = { text: lines[stats.daysLogged % lines.length], source: "Vesper" };
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 2500);
-    fetchThought(fallback, ctrl.signal).then((t) => {
+    fetchThought(fallback, ctrl.signal, hardDay ? "hard" : "steady").then((t) => {
       clearTimeout(timer);
       setThought(t);
     });
