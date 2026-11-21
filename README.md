@@ -1,86 +1,149 @@
-# Design Engineer take-home
+# Vesper
 
-Thanks for making it this far. This is the part we care about most, and it's small
-on purpose. Everything you need is right here in this repo, and your work stays
-yours.
-
-## What to build
-
-The main daily moment of an app that helps someone stick with one daily goal. That's
-the screen where they do the thing each day, mark it done, and get a little sense of
-progress that makes them want to come back tomorrow. Just that one screen. You don't
-need to build the rest of the app.
-
-You pick the goal: learning a language, saving money, winding down for sleep, a small
-creative habit, whatever you like. We want to see what you choose and why.
-
-Build it in `app/page.tsx`. Design for a phone first, since that's how we'll look at
-it. Making it responsive for desktop too is up to you.
-
-## The thing I really want you to get
-
-This kind of app only makes money as a subscription, and we don't make a cent until
-someone sticks around for about three billing cycles (five is where it really pays
-off). People don't stay because we nag them. They stay because they got hooked on one
-thing early, something they'd miss if it disappeared.
-
-So pick the one thing you think people would get hooked on, and build the daily moment
-around it. Tell me where you're placing that bet.
-
-## A few rules
-
-- Start from this scaffold, don't rebuild it from scratch. We use the same starting
-  point for everyone, and we'll build on your version together later, so keep it
-  runnable.
-- Data's up to you. There's a sample file at `data/sample.json` to use and reshape, or
-  if it fits your idea, pull from a free external API (word of the day, quotes, FX rates,
-  whatever). Showing some REST chops is a plus. Two rules either way: don't stand up your
-  own backend, database, or auth, and keep it running for us out of the box, so nothing
-  that needs an API key or a signup we'd have to create, and have it fall back gracefully
-  if the API is slow or down. Interactions like checking a thing off or a streak ticking
-  up can just live in local state.
-- Plan for about 5 hours. Please don't go way over. If you've got bigger ideas, jot
-  them down instead of building them.
-
-Skip whatever doesn't matter here: no sign-in, no real payments (just show where a paid
-feature would go), no empty states or edge cases. A small, clean, working thing beats a
-big fragile one every time.
-
-## Running it
+**A daily check-in for cutting down on nicotine, where a hard day still counts.**
 
 ```bash
 npm install && npm run dev
 ```
 
-It opens at http://localhost:3000 and reloads as you edit. Use Node 22 if you can
-(there's an `.nvmrc`).
+Opens at http://localhost:3000. Node 22 (`.nvmrc`). There is no API key or signup, and nothing to set up.
 
-## Sending it back
+- **Figma** (design system, screens, usability flow, desktop): [Vesper App](https://www.figma.com/design/2HhtwMSgiPZOEticE1EUsi/Vesper-App?node-id=47-4&t=ahNXKzrU2pD1MwvC-1)
+- **Original brief:** [`BRIEF.md`](./BRIEF.md)
 
-Work in your own copy (clone it, or hit "Use this template"). Please don't push to this
-repo or open a PR against it.
+---
 
-When you're done, email me at jamieson@chooseyourhorizon.com with either a zip of your
-project (skip `node_modules`) or a link to your own repo. Make sure it still runs with
-one command, since we'll build on it together in a short live session. Deploying it
-somewhere like Vercel is optional, a nice bonus but we don't score it.
+## The goal I picked, and why
 
-Send a quick note on your thinking too: what you looked at for inspiration, what you
-chose and why, the one thing you're betting people get hooked on, and what you'd measure
-or test to know it's working. A short write-up or a Loom under 5 minutes is perfect. And
-tell me what tools you used, including AI. We use it, and using it well is a plus.
+Cutting down on cigarettes. I picked it because the usual habit-app mechanic, the streak, breaks worst here.
 
-## How we'll look at it
+Someone who is cutting down will have days above their limit. In a streak app, that day sets them back to zero. That is the exact moment the app stops feeling useful and starts feeling like a judge. People who already feel bad about a slip don't open the thing that confirms it. They quietly stop opening it, and that is the churn this business can't afford.
 
-Mostly the design: is it clear, nice to use on a phone, and does it actually make you
-want to come back? We also care that it's built with some consistency instead of random
-one-off styles, that your product bet makes sense, and that we can run it and follow
-your thinking.
+## Inspiration
 
-If anything's unclear, just email me before you start. Honestly, a good question counts
-in your favor.
+Mostly the quit-tracking and habit apps whose screenshots I collected on the **References** page of the Figma file:
 
-Have fun with it, and be creative. I'm excited to see what you come up with. And don't
-skip the write-up, that's how I get a feel for the way you think.
+- **Quittercheck:** its calm green home card shaped the hero. The mood is a quiet landscape, not a dashboard.
+- **The Navigate design system:** I took its color energy and generous rounded shapes and toned them down to feel calmer for a health context.
+- **Streak apps (by contrast):** the reset-to-zero moment is what I designed against.
 
-Jamieson
+## The bet: a count that never resets
+
+Vesper's hero number is **days logged**, not days clean. It only goes up. Logging 7 cigarettes on a day with a limit of 5 still moves it from 13 to 14.
+
+What I think people get hooked on is **honesty without punishment**: knowing the app takes the bad day too. After a few weeks, "47 days logged" is something you'd genuinely miss if it disappeared, and no single bad day can take it away. That is the habit that has to survive to billing cycle 3.
+
+Everything on the screen backs the bet:
+
+- **The check-in takes about 15 seconds.** Count, an optional mood, then "Close the day". No journaling and no streak math.
+- **"Within your limit 11 of 13"** sits next to the count. It is an honest second number that doesn't reset either.
+- **A hard day changes the tone, not the score.** The sun nods instead of celebrating. The card says *"Logging a hard day still counts."* It offers one small next step: keep tomorrow's limit or try a softer one.
+- **Milestones are about showing up** ("Two weeks of showing up"), not abstinence.
+- **The week strip makes gaps editable.** A missed day can be filled in later ("Tap a day to add or edit"), and "I didn't track that day" is a valid answer.
+- **Community is a small proof that others log hard days too.** On a hard day it switches to posts from people who did the same.
+
+## Where the money goes
+
+Plus ("A coach for the hard days") appears in two places:
+
+1. **In context:** "Talk to a coach" with a Plus chip, inside the hard-day card. This is the moment someone actually wants help, so it's the most honest place to offer it.
+2. **Ambient:** a Plus card in the column (mobile) or sidebar (desktop).
+
+The trial button shows a toast saying it's a demo. There are no real payments.
+
+## The daily moment, as built
+
+The screen is Home plus its sheets: check-in, edit a past day, and Plus. The other tabs (Progress, Community, Plan) and onboarding are designed in Figma but not built, as the brief asks.
+
+- **Mobile first:**
+  - one column with a floating tab bar.
+  - check-in in a bottom sheet (a native `<dialog>`).
+- **Tablet (≥ 768 px):**
+  - two columns, with the check-in inline next to the hero.
+  - sheets become centered dialogs.
+- **Desktop (≥ 1024 px):** a sidebar replaces the header and the tab bar.
+- **State:** the person's own entries live in `localStorage` (`lib/store.ts`) on top of `data/sample.json`. "Reset demo" at the bottom clears them.
+  - The sample is set up to tell the story: today is Fri Nov 20. There are 13 days logged with a couple above the limit, and Thursday is missing. One check-in reaches the two-week milestone.
+
+### Motion
+
+Small, and only where something changed:
+
+- **On close:** the button confirms with a ~400 ms "✓ Day closed" beat before saving.
+- **In the hero:**
+  - the count rolls up and the arc grows.
+  - within the limit, the sun bounces with a little confetti; above the limit, it only nods.
+- **Picking:** the stepper and mood picker pop or wiggle and give haptic feedback where supported.
+- **Cards and toasts:** cards rise in on load, and toasts slide in.
+- **Reduced motion:** everything respects `prefers-reduced-motion`.
+
+## External API: DummyJSON, with curated content
+
+After a day is closed, "A line for tomorrow" shows one quote from [DummyJSON](https://dummyjson.com/docs/quotes). It needs no key.
+
+I first tried random quotes with a keyword filter over the whole pool (~1,450 quotes). It let through religious, political and hustle lines that don't fit a health app's tone. So `lib/thought.ts` works differently:
+
+- It fetches **one quote by ID from a list I read and picked**, split by tone:
+  - `hard` lines for a day above the limit.
+  - `steady` lines for any other day.
+- A word guard rejects the quote if the API content ever changes, and it normalizes the pool's Title Case.
+- **Fallback:** if the call fails or takes longer than 4 s, Vesper's own lines are shown instead, matching the same tone. A skeleton covers the wait.
+
+The API is real, but the voice stays the product's.
+
+## Design system
+
+The code mirrors the Figma system 1:1, so the two can evolve together:
+
+- **Tokens:** Figma variables map to Tailwind 4 `@theme` in `app/globals.css`.
+  - primitives such as `lime-400` and `ink-900`.
+  - semantic tokens such as `surface`, `fg-muted`, `logged` and `mood-*`.
+  - `--color-*: initial` removes Tailwind's default palette, so only system colors exist.
+- **Type:** Figma text styles map to `@utility type-*` (for example `type-title-l` and `type-overline`).
+- **Components:** Button, Chip, Card, Sheet, Stepper and MoodPicker in `app/_components/ui.tsx`. The screen sections are in `sections.tsx`.
+- **Illustrations** (the landscape, the sun, mood faces and the trophy) are inline SVG, so they can be animated.
+
+```
+app/
+  page.tsx               server entry → <TodayScreen />
+  globals.css            tokens, type utilities, keyframes
+  _components/
+    TodayScreen.tsx      layout + state (client)
+    sections.tsx         hero, week, milestones, cards, nav
+    sheets.tsx           check-in, edit day, Plus
+    ui.tsx               primitives
+    illustrations.tsx    SVG art
+lib/
+  vesper.ts              pure logic: stats, day states, milestones
+  store.ts               localStorage overrides (useSyncExternalStore)
+  thought.ts             DummyJSON + curation + fallback
+  motion.ts              animated numbers, reduced motion, haptics
+data/sample.json
+```
+
+## What I'd measure
+
+The bet is that a hard day doesn't end the relationship. So the first metric is about what happens after one:
+
+1. **Return after a hard day:** the share of users who check in the day after a day above their limit. This is the number the whole design is built to move. I'd compare it against a streak-reset variant.
+2. **Hard days logged vs. skipped:** are above-limit days being logged, or showing up as gaps? Rising honesty is a leading indicator.
+3. **Check-in rate by week** (D7, D30, D90). The business needs about 3 billing cycles, so the shape of the curve around weeks 4–12 matters more than D1.
+4. **Trend toward the limit:** the weekly average vs. the baseline. Retention only matters if the product actually helps.
+5. **Plus conversion by entry point:** the hard-day coach link vs. the ambient card. It tests whether help offered in the moment converts better than a banner.
+
+## What I'd build next
+
+- Day-1 state ("0 days logged") and onboarding in code. Both are designed in Figma, including the time-skip note.
+- A gentle evening reminder that points to the check-in, never to the count.
+- The Progress tab: a month view that shows the trend without a streak.
+- Community posting, and the Plus coach flow.
+
+## Tools
+
+- **Figma** for the design system, screens, prototype flow and desktop layouts.
+- **Next.js 16** (the scaffold), **React 19**, **Tailwind CSS 4**, and TypeScript.
+- **Claude (Anthropic)**, used throughout as a collaborator:
+  - It critiqued the usability and information architecture.
+  - It built the Figma system through the Figma MCP (variables, text styles, components) from my screens and adjustments.
+  - It implemented the code, checked it in the browser, and curated the quote list.
+- I made the design calls, the product bet and the copy decisions, and reviewed everything that went in.
